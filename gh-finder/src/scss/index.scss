@@ -1,8 +1,10 @@
 // ********
-// Global Properties
+// Reset Styles
 // ********
 
-*, *::before, *::after {
+*,
+*::before,
+*::after {
     // Having this inherited instead of
     // Applied directly to all elements
     // will allow easier integration
@@ -28,7 +30,7 @@ body {
     margin: 0;
     // makes body fill viewport
     height: 100%;
-    
+
     // Should include page color, font
 
     // Do not explicitly set font size,

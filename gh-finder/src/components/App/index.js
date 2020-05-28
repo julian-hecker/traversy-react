@@ -5,7 +5,6 @@ import UserItems from '../UserItems';
 import Search from '../Search';
 import axios from 'axios';
 import Alert from '../Alert';
-import PropTypes from 'prop-types';
 
 class App extends Component {
     constructor(props) {
