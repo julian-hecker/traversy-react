@@ -1,0 +1,22 @@
+@import '../../scss/shared';
+
+.nav {
+    padding: 0.5rem 2rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    color: yellow;
+    background-color: black;
+    ul {
+        display: flex;
+        flex-direction: row;
+        list-style: none;
+    }
+    li {
+        padding: .5rem;
+    }
+    a {
+        color: inherit;
+    }
+}
