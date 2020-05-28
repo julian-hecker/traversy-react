@@ -4,8 +4,8 @@ import Navbar from '../Navbar';
 import UserItems from '../UserItems';
 import Search from '../Search';
 import axios from 'axios';
-import PropTypes from 'prop-types'
-
+import Alert from '../Alert';
+import PropTypes from 'prop-types';
 
 class App extends Component {
     constructor(props) {
@@ -13,9 +13,9 @@ class App extends Component {
         this.state = {
             users: [],
             loading: false,
+            alert: null,
         };
     }
-
 
     // async componentDidMount() {
     //     this.setState({ loading: true });
@@ -25,21 +25,35 @@ class App extends Component {
     // }
 
     searchUsers = async (search) => {
-        
         const githubUrl = `https://api.github.com/search/users?q=${search}&client_id=${process.env.REACT_APP_GITHUB_CLIENT_ID}&client_secret=${process.env.REACT_APP_GITHUB_CLIENT_SECRET}`;
         const res = await axios.get(githubUrl);
-        this.setState({users: res.data.items, loading: false})
+        this.setState({ users: res.data.items, loading: false });
+    };
+
+    clearUsers = () => this.setState({ users: [], loading: false });
+
+    setAlert = (msg, type) => {
+        this.setState({ alert: { msg, type } });
+        // remove alert
+        setTimeout(() => this.setState({ alert: null }), 5000);
     };
 
     render() {
+        const { searchUsers, clearUsers, setAlert } = this;
+        const { users, loading, alert } = this.state;
         return (
             <div className="app">
                 <Navbar title="GH-Finder" />
-                <Search searchUsers={this.searchUsers} />
-                <UserItems
-                    loading={this.state.loading}
-                    users={this.state.users}
-                />
+                <div className="container">
+                    <Alert alert={alert} />
+                    <Search
+                        searchUsers={searchUsers}
+                        clearUsers={clearUsers}
+                        setAlert={setAlert}
+                        showClear={Boolean(users.length)}
+                    />
+                    <UserItems loading={loading} users={users} />
+                </div>
             </div>
         );
     }
