@@ -9,7 +9,11 @@ Coursework and projects from Brad Traversy's [React Front to Back](https://www.u
 ## Folder Structure
 
 ```bash
-
+src
+├───assets
+├───components
+├───pages
+└───routes
 ```
 
 ## Further Reading
