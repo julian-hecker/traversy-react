@@ -10,10 +10,13 @@ Coursework and projects from Brad Traversy's [React Front to Back](https://www.u
 
 ```bash
 src
-├───assets
-├───components
-├───pages
-└───routes
+├───assets # static assets
+├───components # reusable components
+├───routes # router and pages
+├───scss
+│   └───index.scss  # scss reset
+│   └───_shared.scss # vars available to all scss
+└───index.js # app entrypoint
 ```
 
 ## Further Reading
