@@ -35,13 +35,23 @@ Functions that let us hook into React state and lifecycle methods from a functio
 ```js
 // Import hooks
 import {useState, useEffect} from 'react';
-// Using useState hook
+
 const Component = (props) => {
+    // Using useState hook
     const [data, setData] = useState('');
     // state data and setter | (default value)
     // useState destructures into default value and setter function
     // setData variable is essentially this.setState but for a specific piece of state
     // data can be any individual piece of state 
+
+    // using useEffect hook
+    useEffect(() => {
+        getUsers();
+    }, []);
+    // the action of useEffect depends on the value in the 2nd param.
+    // [] mimics componentDidUpdate (runs once)
+    // putting values in the array is adding dependencies;
+    // the hook will run whenever those are updated
 }
 ```
 
