@@ -1,12 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types'
 
+import { Link } from 'react-router-dom';
+
 const Item = ({ user }) => {
-    const { login, html_url } = user;
+    const { login } = user;
     return (
         <div>
             <h4>{login}</h4>
-            <a href={html_url}>link</a>
+            <Link to={`/user/${login}`}>More</Link>
         </div>
     );
 }
