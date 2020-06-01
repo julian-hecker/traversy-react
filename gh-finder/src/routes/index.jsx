@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import {
     BrowserRouter as Router,
     Route,
@@ -14,84 +14,81 @@ import UserPage from '../pages/user-page';
 import Search from '../components/Search';
 import About from '../pages/about';
 
-class App extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            users: [],
-            user: {},
-            repos: [],
-            loading: false,
-            alert: null,
-        };
-    }
+const App = () => {
+    const [users, setUsers] = useState([]);
+    const [user, setUser] = useState({});
+    const [repos, setRepos] = useState([]);
+    const [loading, setLoading] = useState(false);
+    const [alert, setAlert] = useState(null);
 
-    searchUsers = async (search) => {
-        this.setState({ loading: true });
+    const searchUsers = async (search) => {
+        setLoading(true);
         const githubUrl = `https://api.github.com/search/users?q=${search}&client_id=${process.env.REACT_APP_GITHUB_CLIENT_ID}&client_secret=${process.env.REACT_APP_GITHUB_CLIENT_SECRET}`;
         const res = await axios.get(githubUrl);
-        this.setState({ users: res.data.items, loading: false });
+        setUsers(res.data.items);
+        setLoading(false);
     };
 
-    clearUsers = () => this.setState({ users: [], loading: false });
+    const clearUsers = () => {
+        setUsers([]);
+        setLoading(false);
+    };
 
-    setAlert = (msg, type) => {
-        this.setState({ alert: { msg, type } });
-        // remove alert
-        setTimeout(() => this.setState({ alert: null }), 5000);
+    const showAlert = (msg, type) => {
+        setAlert({ msg, type });
+        setTimeout(() => setAlert(null), 5000);
     };
 
     // Get a single user
-    getUser = async (username) => {
-        this.setState({ loading: true });
+    const getUser = async (username) => {
+        setLoading(true);
         const githubUrl = `https://api.github.com/users/${username}?client_id=${process.env.REACT_APP_GITHUB_CLIENT_ID}&client_secret=${process.env.REACT_APP_GITHUB_CLIENT_SECRET}`;
         const res = await axios.get(githubUrl);
-        this.setState({ user: res.data, loading: false });
+        setUser(res.data);
+        setLoading(false);
     };
 
     // Get user repos
-    getUserRepos = async (username) => {
+    const getUserRepos = async (username) => {
+        setLoading(true);
         const githubUrl = `https://api.github.com/users/${username}/repos?sort=created:asc&client_id=${process.env.REACT_APP_GITHUB_CLIENT_ID}&client_secret=${process.env.REACT_APP_GITHUB_CLIENT_SECRET}`;
         const res = await axios.get(githubUrl);
-        this.setState({ repos: res.data });
+        setRepos(res.data);
+        setLoading(false);
     };
 
-    render() {
-        const { searchUsers, clearUsers, setAlert } = this;
-        const { user, users, repos, loading, alert } = this.state;
-        return (
-            <Router>
-                <Navbar title="GH-Finder" />
-                <Alert alert={alert} />
-                <Switch>
-                    <Route exact path="/">
-                        <Search
-                            searchUsers={searchUsers}
-                            clearUsers={clearUsers}
-                            setAlert={setAlert}
-                            showClear={Boolean(users.length)}
-                        />
-                        <UserItems loading={loading} users={users} />
-                    </Route>
-                    <Route exact path="/about" component={About} />
-                    <Route
-                        exact
-                        path="/user/:login"
-                        render={(props) => (
-                            <UserPage
-                                {...props}
-                                getUser={this.getUser}
-                                getUserRepos={this.getUserRepos}
-                                user={user}
-                                repos={repos}
-                                loading={loading}
-                            />
-                        )}
+    return (
+        <Router>
+            <Navbar title="GH-Finder" />
+            <Alert alert={alert} />
+            <Switch>
+                <Route exact path="/">
+                    <Search
+                        searchUsers={searchUsers}
+                        clearUsers={clearUsers}
+                        showAlert={showAlert}
+                        showClear={Boolean(users.length)}
                     />
-                </Switch>
-            </Router>
-        );
-    }
-}
+                    <UserItems loading={loading} users={users} />
+                </Route>
+                <Route exact path="/about" component={About} />
+                <Route
+                    exact
+                    path="/user/:login"
+                    render={(props) => (
+                        <UserPage
+                            {...props}
+                            getUser={getUser}
+                            getUserRepos={getUserRepos}
+                            user={user}
+                            repos={repos}
+                            loading={loading}
+                        />
+                    )}
+                />
+            </Switch>
+        </Router>
+    );
+};
 
 export default App;
