@@ -1,7 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import PropTypes from 'prop-types';
+import GithubContext from '../../context/github/githubContext';
 
-const Search = ({ searchUsers, showClear, clearUsers, showAlert }) => {
+const Search = ({ showAlert }) => {
+    const ghctx = useContext(GithubContext);
+
     const [search, setSearch] = useState('');
 
     const onChange = (ev) => {
@@ -16,7 +19,7 @@ const Search = ({ searchUsers, showClear, clearUsers, showAlert }) => {
         if (!search) {
             showAlert('enter something plz', 'light');
         } else {
-            searchUsers(search);
+            ghctx.searchUsers(search);
             setSearch('');
         }
     };
@@ -33,8 +36,8 @@ const Search = ({ searchUsers, showClear, clearUsers, showAlert }) => {
                 />
                 <input type="submit" value="Go" />
             </form>
-            {showClear && (
-                <button className="button" onClick={clearUsers}>
+            {ghctx.users.length > 0 && (
+                <button className="button" onClick={ghctx.clearUsers}>
                     Clear
                 </button>
             )}
@@ -43,10 +46,7 @@ const Search = ({ searchUsers, showClear, clearUsers, showAlert }) => {
 };
 
 Search.propTypes = {
-    searchUsers: PropTypes.func.isRequired,
-    clearUsers: PropTypes.func.isRequired,
     showAlert: PropTypes.func.isRequired,
-    showClear: PropTypes.bool.isRequired,
 };
 
 export default Search;

@@ -1,18 +1,19 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useContext } from 'react';
 import PropTypes from 'prop-types';
 
 import { Link } from 'react-router-dom';
 import Spinner from '../components/Spinner';
 import Repos from '../components/Repos/repos';
+import GithubContext from '../context/github/githubContext';
 
 const UserPage = ({
-    loading,
-    user,
     repos,
-    getUser,
     getUserRepos,
     match,
 }) => {
+    const ghctx = useContext(GithubContext);
+    const { getUser, loading, user } = ghctx;
+
     useEffect(() => {
         const { login } = match.params;
         getUser(login);
@@ -85,10 +86,7 @@ const UserPage = ({
 };
 
 UserPage.propTypes = {
-    loading: PropTypes.bool,
-    user: PropTypes.object.isRequired,
     repos: PropTypes.array.isRequired,
-    getUser: PropTypes.func.isRequired,
     getUserRepos: PropTypes.func.isRequired,
 };
 

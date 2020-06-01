@@ -12,7 +12,9 @@ Coursework and projects from Brad Traversy's [React Front to Back](https://www.u
 src
 ├───assets # static assets
 ├───components # reusable components
-├───routes # router and pages
+├───context # context providers, state, and reducers
+├───pages # page components 
+├───routes # router (app) component
 ├───scss
 │   └───index.scss  # scss reset
 │   └───_shared.scss # vars available to all scss
@@ -20,8 +22,6 @@ src
 ```
 
 ## Notes
-
-
 
 ### Hooks
 Functions that let us hook into React state and lifecycle methods from a functional component
@@ -39,6 +39,7 @@ import {useState, useEffect} from 'react';
 const Component = (props) => {
     // Using useState hook
     const [data, setData] = useState('');
+    const [users, setUsers] = useState([]);
     // state data and setter | (default value)
     // useState destructures into default value and setter function
     // setData variable is essentially this.setState but for a specific piece of state
@@ -54,6 +55,9 @@ const Component = (props) => {
     // the hook will run whenever those are updated
 }
 ```
+
+### Context API
+Context is complicated.
 
 
 ## Best Practices

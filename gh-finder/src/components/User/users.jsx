@@ -1,9 +1,13 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Item from './item';
 import Spinner from '../Spinner';
-import PropTypes from 'prop-types';
 
-const UserItems = ({ users, loading }) => {
+import GithubContext from '../../context/github/githubContext';
+
+const UserItems = (props) => {
+    const ghctx = useContext(GithubContext);
+    const { loading, users } = ghctx;
+
     if (loading) {
         return <Spinner />;
     }
@@ -26,10 +30,5 @@ const UserItems = ({ users, loading }) => {
     );
 };
 
-UserItems.propTypes = {
-    users: PropTypes.array.isRequired,
-    loading: PropTypes.bool.isRequired,
-};
 
 export default UserItems;
-
