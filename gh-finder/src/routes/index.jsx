@@ -4,7 +4,6 @@ import {
     Route,
     Switch,
 } from 'react-router-dom';
-import axios from 'axios';
 
 import GithubState from '../context/github/GithubState';
 
@@ -16,9 +15,7 @@ import Search from '../components/Search';
 import About from '../pages/about';
 
 const App = () => {
-    const [repos, setRepos] = useState([]);
     const [alert, setAlert] = useState(null);
-
 
 
     const showAlert = (msg, type) => {
@@ -26,13 +23,6 @@ const App = () => {
         setTimeout(() => setAlert(null), 5000);
     };
 
-
-    // Get user repos
-    const getUserRepos = async (username) => {
-        const githubUrl = `https://api.github.com/users/${username}/repos?sort=created:asc&client_id=${process.env.REACT_APP_GITHUB_CLIENT_ID}&client_secret=${process.env.REACT_APP_GITHUB_CLIENT_SECRET}`;
-        const res = await axios.get(githubUrl);
-        setRepos(res.data);
-    };
 
     return (
         <GithubState>
@@ -50,13 +40,7 @@ const App = () => {
                     <Route
                         exact
                         path="/user/:login"
-                        render={(props) => (
-                            <UserPage
-                                {...props}
-                                getUserRepos={getUserRepos}
-                                repos={repos}
-                            />
-                        )}
+                        component={UserPage}
                     />
                 </Switch>
             </Router>
