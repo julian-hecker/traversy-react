@@ -7,6 +7,9 @@ const Search = () => {
     const ghctx = useContext(githubContext);
     const actx = useContext(alertContext);
 
+    const { searchUsers, users, clearUsers } = ghctx;
+    const { setAlert } = actx;
+
     const [search, setSearch] = useState('');
 
     const onChange = (ev) => {
@@ -19,9 +22,9 @@ const Search = () => {
     const onSubmit = (ev) => {
         ev.preventDefault();
         if (!search) {
-            actx.setAlert('enter something plz', 'light');
+            setAlert('enter something plz', 'light');
         } else {
-            ghctx.searchUsers(search);
+            searchUsers(search);
             setSearch('');
         }
     };
@@ -38,14 +41,13 @@ const Search = () => {
                 />
                 <input type="submit" value="Go" />
             </form>
-            {ghctx.users.length > 0 && (
-                <button className="button" onClick={ghctx.clearUsers}>
+            {users.length > 0 && (
+                <button className="button" onClick={clearUsers}>
                     Clear
                 </button>
             )}
         </>
     );
 };
-
 
 export default Search;

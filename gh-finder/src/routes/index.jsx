@@ -7,10 +7,10 @@ import {
 
 import Alert from '../components/Alert';
 import Navbar from '../components/Navbar';
-import UserItems from '../components/User/users';
+import SearchPage from '../pages/search-page';
 import UserPage from '../pages/user-page';
-import Search from '../components/Search';
 import About from '../pages/about';
+import NotFound from '../pages/not-found';
 
 import GithubState from '../context/github/GithubState';
 import AlertState from '../context/alert/AlertState';
@@ -23,10 +23,11 @@ const App = () => {
                     <Navbar title="GH-Finder" />
                     <Alert />
                     <Switch>
-                        <Route exact path="/">
-                            <Search />
-                            <UserItems />
-                        </Route>
+                        <Route
+                            exact
+                            path="/"
+                            component={SearchPage}
+                        />
                         <Route
                             exact
                             path="/about"
@@ -37,6 +38,7 @@ const App = () => {
                             path="/user/:login"
                             component={UserPage}
                         />
+                        <Route component={NotFound} />
                     </Switch>
                 </Router>
             </AlertState>

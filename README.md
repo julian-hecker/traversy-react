@@ -65,20 +65,32 @@ Contexts can be implemented as follows: there are multiple contexts, which can c
 # Files:
 src
 ├───context # can be split into multiple contexts
-│   ├───types.js # 
-│   ├───appContext.js # 
-│   ├───appReducer.js # 
-│   └───AppState.js # 
+│   ├───types.js # dict that keeps track of actions
+│   ├───appContext.js # just creates context. that's all.
+│   ├───appReducer.js # what happens to state depending on action
+│   └───AppState.js # initializes state, and sends actions to the reducer. wraps components to create a "Provider" to all descendants
 # etc...
 ```
 
 ```jsx
 // App Component
-import React from 'react';
+import React, { useContext } from 'react'; // allows using state
+import Pages from './pages'; // generic component
+import State from '../context/AppState.js'; // only required on wrapper
+import appContext from '../context/appContext.js'; // grab that context
 
+const App = () => {
+    const appCtx = useContext(appContext); // initialize context
+    const { user, setUser } = appCtx; // state & methods from context
 
+    return (
+        <State>
+            <Page user={user} />
+        </State>
+    );
+}
 
-
+export default App;
 ```
 
 ## Best Practices
