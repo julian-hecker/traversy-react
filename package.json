@@ -1,0 +1,20 @@
+{
+    "name": "traversy-react",
+    "version": "1.0.0",
+    "description": "projects and notes from Brad Traversy's React course on Udemy",
+    "main": "index.js",
+    "scripts": {
+        "build-gh": "cd gh-finder && npm run build",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/julian-hecker/traversy-react.git"
+    },
+    "author": "",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/julian-hecker/traversy-react/issues"
+    },
+    "homepage": "https://github.com/julian-hecker/traversy-react#readme"
+}
