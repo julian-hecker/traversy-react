@@ -57,8 +57,29 @@ const Component = (props) => {
 ```
 
 ### Context API
-Context is complicated.
+Using context API creates a "single source of truth" for application state, eliminating the need to pass up props or send down state to child components.
 
+Contexts can be implemented as follows: there are multiple contexts, which can correspond to parts of state
+
+```bash
+# Files:
+src
+├───context # can be split into multiple contexts
+│   ├───types.js # 
+│   ├───appContext.js # 
+│   ├───appReducer.js # 
+│   └───AppState.js # 
+# etc...
+```
+
+```jsx
+// App Component
+import React from 'react';
+
+
+
+
+```
 
 ## Best Practices
 - Each component gets its own file
