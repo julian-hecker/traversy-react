@@ -9,7 +9,7 @@ import Alert from '../components/Alert';
 import Navbar from '../components/Navbar';
 import SearchPage from '../pages/search-page';
 import UserPage from '../pages/user-page';
-// import About from '../pages/about';
+import About from '../pages/about.jsx';
 import NotFound from '../pages/not-found';
 
 import GithubState from '../context/github/GithubState';
@@ -28,11 +28,11 @@ const App = () => {
                             path="/"
                             component={SearchPage}
                         />
-                        {/* <Route
+                        <Route 
                             exact
                             path="/about"
                             component={About}
-                        /> */}
+                        />
                         <Route
                             exact
                             path="/user/:login"
