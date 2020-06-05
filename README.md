@@ -23,6 +23,11 @@ src
 
 ## Notes
 
+## Create React App
+Will create a somewhat sloppy template to get started. Couple of things not necessary. There are many extra templates available online, like a typescript template.
+
+`npx create-react-app . --template typescript`
+
 ### Hooks
 Functions that let us hook into React state and lifecycle methods from a functional component
 - useState
@@ -108,3 +113,8 @@ Folder Structure
 TypeScript
 - [https://www.sitepoint.com/react-with-typescript-best-practices/]
 - [https://www.typescriptlang.org/docs/handbook/basic-types.html]
+
+
+
+
+mongodb+srv://contact-keeper:QPa65cS5WQfUw9wT@traversy-react-contacts-iizpu.mongodb.net/test?retryWrites=true&w=majority
