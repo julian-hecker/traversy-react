@@ -1,0 +1,46 @@
+{
+  "name": "contact-finder",
+  "version": "0.1.0",
+  "private": true,
+  "proxy": "http://localhost:3001",
+  "description": "Project from Brad Traversy's React Front to Back",
+  "main": "server/bin/www",
+  "author": "Julian Hecker",
+  "license": "MIT",
+  "dependencies": {
+    "concurrently": "^5.2.0",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "mysql2": "^2.1.0",
+    "node-sass": "^4.14.1",
+    "nodemon": "^2.0.4",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-scripts": "3.4.1",
+    "sequelize": "^5.21.12"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "node server/bin/www",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "dev": "concurrently \"nodemon server/bin/www\" \"npm run start-react\"",
+    "start-react": "react-scripts start"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
