@@ -1,4 +1,5 @@
-const router = require('express').Router();
+const router = require('express').Router(),
+    {check, validationResult} = require('express-validator');
 
 /**
  * @route   GET api/auth

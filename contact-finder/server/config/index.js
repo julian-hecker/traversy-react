@@ -2,16 +2,23 @@ if (process.env.NODE_ENV !== 'production') {
     require('dotenv').config();
 }
 
-const Sequelize = require('sequelize');
-const connectionURI = process.env.CLEARDB_DATABASE_URL;
+const connectionURI = process.env.MONGO_URI;
 
-const db = new Sequelize(connectionURI, {
-    pool: {
-        max: 5,
-        min: 0,
-        acquire: 30000,
-        idle: 10000,
-    },
-});
+const mongoose = require('mongoose');
 
-module.exports = db;
+async function connectDB() {
+    try {
+        const db = await mongoose.connect(connectionURI, {
+            useCreateIndex: true,
+            useNewUrlParser: true,
+            useFindAndModify: false,
+            useUnifiedTopology: true,
+        });
+        console.log('db connected');
+    } catch (err) {
+        console.log(err);
+        process.exit(404);
+    }
+}
+
+module.exports = connectDB;

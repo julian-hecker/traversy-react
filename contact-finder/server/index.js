@@ -6,7 +6,8 @@ const express = require('express'),
 const app = express(),
     buildDirectory = path.join(__dirname, '..', 'build');
 
-app.use(express.json());
+require('./config')();
+app.use(express.json({ extended: false }));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(buildDirectory));
 
@@ -18,3 +19,10 @@ app.get('*', (req, res) => {
 });
 
 module.exports = app;
+
+/** Todo
+ * connect database in mongo, do the app
+ * Update CRA-template to include:
+ * - authentication, middlewares, better react app
+ *
+ */

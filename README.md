@@ -117,4 +117,3 @@ TypeScript
 
 
 
-mongodb+srv://contact-keeper:QPa65cS5WQfUw9wT@traversy-react-contacts-iizpu.mongodb.net/test?retryWrites=true&w=majority
