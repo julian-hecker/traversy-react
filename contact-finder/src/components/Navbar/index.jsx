@@ -1,13 +1,16 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import styles from './Navbar.module.scss';
 
 const Navbar = ({ title, icon, links }) => {
     return (
-        <nav>
-            <h1>
-                <i className={icon}></i> {title}
-            </h1>
+        <nav className={styles.navbar}>
+            <Link to="/">
+                <h1>
+                    <i className={icon}></i> {title}
+                </h1>
+            </Link>
             {!!links.length && (
                 <ul>
                     {links.map((link) => (
@@ -30,7 +33,7 @@ Navbar.propTypes = {
 Navbar.defaultProps = {
     title: 'Contact Keeper',
     icon: 'fas fa-id-card-alt',
-    links: []
+    links: [],
 };
 
 export default Navbar;

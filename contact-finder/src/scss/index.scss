@@ -1,3 +1,4 @@
+@import './shared';
 // ********
 // Global Properties
 // ********
@@ -28,9 +29,9 @@ body {
     margin: 0;
     // makes body fill viewport
     height: 100%;
-    
     // Should include page color, font
 
+    font-family: $global-font;
     // Do not explicitly set font size,
     // will prevent users from customizing
 }
