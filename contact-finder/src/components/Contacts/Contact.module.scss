@@ -1,0 +1,42 @@
+.contacts {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.card {
+    padding: 1.5rem 1rem;
+    border: 0.05rem solid black;
+    background-color: #eee;
+    ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+    a {
+        text-decoration: none;
+        letter-spacing: .05rem;
+        color: inherit;
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+}
+
+.form {
+    padding: 1.5rem 1rem;
+    background-color: #eee;
+    border: .05rem solid black;
+    input {
+        display: block;
+        margin-bottom: .75rem;
+        width: 100%;
+        padding: .5rem;
+    }
+    input[type="submit"] {
+        width: min-content;
+        background-color: #88aadd;
+        border: none;
+        color: #fff;
+    }
+}
