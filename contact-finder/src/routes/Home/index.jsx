@@ -1,11 +1,13 @@
 import React from 'react';
 
-import style from './home.module.scss';
+import { Contacts, ContactForm } from '../../components/Contacts';
+import style from './Home.module.scss';
 
 const Home = (props) => {
     return (
         <div className={style.home}>
-            <h2>Welcome to the Homeland</h2>
+            <ContactForm />
+            <Contacts />
         </div>
     );
 };
