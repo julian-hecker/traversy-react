@@ -6,7 +6,7 @@ import {
 } from 'react-router-dom';
 
 import State from '../context/State';
-import Navbar from '../components/Navbar';
+import Navbar from '../components/layout/Navbar';
 import Home from './Home';
 import NotFound from './notfound';
 
