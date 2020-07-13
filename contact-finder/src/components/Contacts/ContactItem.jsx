@@ -6,13 +6,17 @@ import style from './Contact.module.scss';
 
 const ContactItem = ({ contact }) => {
     const context = useContext(Context);
-    const { deleteContact } = context;
+    const { clearCurrent, deleteContact, setCurrent } = context;
 
     const handleDelete = () => {
         deleteContact(id);
+        clearCurrent(contact)
     };
 
-    const handleEdit = () => {};
+    const handleEdit = async () => {
+        await clearCurrent();
+        setCurrent(contact);
+    }
 
     const { id, name, email, phone } = contact;
     return (

@@ -15,10 +15,22 @@
     }
     a {
         text-decoration: none;
-        letter-spacing: .05rem;
+        letter-spacing: 0.05rem;
         color: inherit;
         &:hover {
             text-decoration: underline;
+        }
+    }
+    button {
+        display: inline-block;
+        padding: .5rem;
+        margin-right: .5rem;
+        width: min-content;
+        background-color: #446688;
+        border: none;
+        color: #fff;
+        &:hover {
+            background-color: #88aadd;
         }
     }
 }
@@ -26,17 +38,24 @@
 .form {
     padding: 1.5rem 1rem;
     background-color: #eee;
-    border: .05rem solid black;
-    input {
+    border: 0.05rem solid black;
+    input,
+    button {
         display: block;
-        margin-bottom: .75rem;
+        margin-bottom: 0.75rem;
         width: 100%;
-        padding: .5rem;
+        padding: 0.5rem;
     }
-    input[type="submit"] {
+    input[type='submit'],
+    button {
+        display: inline-block;
+        margin-right: 1rem;
         width: min-content;
-        background-color: #88aadd;
+        background-color: #446688;
         border: none;
         color: #fff;
+        &:hover {
+            background-color: #88aadd;
+        }
     }
 }

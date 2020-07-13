@@ -1,9 +1,27 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import Context from '../../context/context';
 import style from './Contact.module.scss';
 
 const ContactForm = (props) => {
     const context = useContext(Context);
+    const {
+        addContact,
+        current,
+        clearCurrent,
+        updateContact,
+    } = context;
+
+    useEffect(() => {
+        if (current !== null) {
+            setContact(current);
+        } else {
+            setContact({
+                name: '',
+                email: '',
+                phone: '',
+            });
+        }
+    }, [context, current]);
 
     const [contact, setContact] = useState({
         name: '',
@@ -15,9 +33,18 @@ const ContactForm = (props) => {
     const handleChange = (ev) =>
         setContact({ ...contact, [ev.target.name]: ev.target.value });
 
+    const handleClear = (ev) => {
+        clearCurrent();
+    };
+
     const handleSubmit = (ev) => {
         ev.preventDefault();
-        context.addContact(contact);
+        if (!current) {
+            addContact(contact);
+        } else {
+            updateContact(contact);
+        }
+        clearCurrent();
         setContact({
             name: '',
             email: '',
@@ -26,7 +53,7 @@ const ContactForm = (props) => {
     };
     return (
         <>
-            <h2>Add Contact</h2>
+            <h2>{current ? 'Edit Contact' : 'Add Contact'}</h2>
             <form className={style.form} onSubmit={handleSubmit}>
                 <label for="name-input">Name</label>
                 <input
@@ -57,6 +84,9 @@ const ContactForm = (props) => {
                     onChange={handleChange}
                 />
                 <input type="submit" value="Submit" />
+                {current && (
+                    <button onClick={handleClear}>Back</button>
+                )}
             </form>
         </>
     );

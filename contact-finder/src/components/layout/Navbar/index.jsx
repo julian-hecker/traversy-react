@@ -13,9 +13,9 @@ const Navbar = ({ title, icon, links }) => {
             </Link>
             {!!links.length && (
                 <ul>
-                    {links.map((link) => (
+                    {links.map((link, n) => (
                         <li>
-                            <Link to={link.url}>{link.text}</Link>
+                            <Link to={link.url} key={n}>{link.text}</Link>
                         </li>
                     ))}
                 </ul>
