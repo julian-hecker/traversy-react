@@ -6,7 +6,7 @@ import {
     CLEAR_CURRENT,
     FILTER_CONTACTS,
     CLEAR_FILTER,
-} from './types';
+} from '../types';
 
 export default (state, action) => {
     switch (action.type) {
